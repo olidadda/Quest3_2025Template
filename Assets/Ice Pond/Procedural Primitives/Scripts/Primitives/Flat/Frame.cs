@@ -1,0 +1,32 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace ProceduralPrimitivesUtil
+{
+    public class Frame : PPBase
+    {
+        public float width1 = 2;
+        public float length1 = 2;
+        public float width2 = 1;
+        public float length2 = 1;
+        public int segments = 3;
+        public int widthSegs = 10;
+        public int lengthSegs = 10;
+
+        protected override void CreateMesh()
+        {
+            m_mesh.name = "Plane";
+
+            length1 = Mathf.Clamp(length1, 0.00001f, 10000.0f);
+            width1 = Mathf.Clamp(width1, 0.00001f, 10000.0f);
+            length2 = Mathf.Clamp(length2, 0.00001f, length1);
+            width2 = Mathf.Clamp(width2, 0.00001f, width1);
+            lengthSegs = Mathf.Clamp(lengthSegs, 1, 100);
+            widthSegs = Mathf.Clamp(widthSegs, 1, 100);
+            segments = Mathf.Clamp(segments, 1, 100);
+
+            m_builder.CreateSurfaceRectRing(pivotOffset, m_forward, m_right, width1, length1, width2, length2, segments, widthSegs, lengthSegs, generateMappingCoords, realWorldMapSize, UVOffset, UVTiling, flipNormals);
+        }
+    }
+}
