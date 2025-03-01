@@ -66,16 +66,29 @@ public class ScriptedEvent : TimelineEventBase
         return conditionObject == null || conditionObject.conditionMet;
     }
 
+    //public void Transition()
+    //{
+    //    if (nextEvent != null)
+    //    {
+    //        Debug.Log($"{eventName} complete, transitioning to {nextEvent.eventName}");
+    //        TimeLine.Instance.TriggerEvent(nextEvent);
+    //    }
+    //    else
+    //    {
+    //        Debug.LogWarning($" {eventName} has no next event assigned!");
+    //    }
+    //}
+
     public void Transition()
     {
         if (nextEvent != null)
         {
             Debug.Log($"{eventName} complete, transitioning to {nextEvent.eventName}");
-            TimeLine.Instance.TriggerEvent(nextEvent);
+            nextEvent.Execute(); // 🔹 Directly execute the next event
         }
         else
         {
-            Debug.LogWarning($" {eventName} has no next event assigned!");
+            Debug.LogWarning($"⚠️ {eventName} has no next event assigned!");
         }
     }
 

@@ -32,11 +32,11 @@ public class SceneTransitionEvent : TimelineEventBase
             Debug.LogWarning($" Scene '{sceneToLoad}' does not exist or is not set!");
         }
 
-        // 🚀 Transition to the next event in the timeline
+        // Transition to the next event in the timeline
         if (nextEvent != null)
         {
-            Debug.Log($"➡ Transitioning to next event: {nextEvent.eventName}");
-            TimeLine.Instance.TriggerEvent(nextEvent);
+            Debug.Log($" Transitioning to next event: {nextEvent.eventName}");
+            nextEvent.Execute(); //Directly execute the next event
         }
         else
         {

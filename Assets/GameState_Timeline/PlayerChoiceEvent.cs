@@ -82,7 +82,8 @@ public class PlayerChoiceEvent : TimelineEventBase
         // Trigger the next event
         if (chosen.nextEvent != null)
         {
-            TimeLine.Instance.TriggerEvent(chosen.nextEvent);
+            Debug.Log($" Transitioning to next event: {chosen.nextEvent.eventName}");
+            chosen.nextEvent.Execute(); // 🔹 Directly execute the next event
         }
         else
         {

@@ -43,7 +43,7 @@ public class TimeLine : MonoBehaviour
 
 
 
-    public static TimeLine Instance;
+    //public static TimeLine Instance;
 
     [Header("Timeline Events")]
     public List<TimelineEventBase> events = new List<TimelineEventBase>();
@@ -53,20 +53,20 @@ public class TimeLine : MonoBehaviour
 
     void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject); // Destroy duplicate
-            return;
-        }
+        //if (Instance != null && Instance != this)
+        //{
+        //    Destroy(gameObject); // Destroy duplicate
+        //    return;
+        //}
 
-        Instance = this;
-        DontDestroyOnLoad(gameObject); // Persist across scenes
+        //Instance = this;
+        //DontDestroyOnLoad(gameObject); // Persist across scenes
     }
 
-    void Start()
-    {
-        if (events.Count > 0) TriggerEvent(events[0]);
-    }
+    //void Start()
+    //{
+    //    if (events.Count > 0) TriggerEvent(events[0]);
+    //}
 
     public void RegisterEvents()
     {
@@ -87,11 +87,11 @@ public class TimeLine : MonoBehaviour
         }
     }
 
-    public void TriggerEvent(TimelineEventBase newEvent)
-    {
-        if (newEvent == null) return;
+    //public void TriggerEvent(TimelineEventBase newEvent)
+    //{
+    //    if (newEvent == null) return;
 
-        currentEvent = newEvent;
-        currentEvent.Execute();
-    }
+    //    currentEvent = newEvent;
+    //    currentEvent.Execute();
+    //}
 }
