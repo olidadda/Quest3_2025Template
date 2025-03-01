@@ -395,15 +395,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d6a2833bf9a6744ba65b65af0b0c974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventName: 
+  eventName: Hello
   objectsToActivate: []
   objectsToDeactivate: []
-  nextEventCondition1: {fileID: 0}
-  nextEventCondition2: {fileID: 0}
   sceneToLoad: 
-  menuToShow: {fileID: 0}
-  menuToHide: {fileID: 0}
   transitionDelay: 0
+  nextEvent: {fileID: 0}
 --- !u!4 &44267789
 Transform:
   m_ObjectHideFlags: 0
@@ -434,9 +431,13 @@ MonoBehaviour:
   eventName: Confirm ID
   objectsToActivate: []
   objectsToDeactivate: []
-  nextEventCondition1: {fileID: 0}
-  nextEventCondition2: {fileID: 0}
-  choices: []
+  choices:
+  - choiceName: 
+    conditionObject: {fileID: 1792715858}
+    nextEvent: {fileID: 44267788}
+    requiredConditions:
+    - condition: {fileID: 0}
+      mustBeTrue: 0
 --- !u!114 &44267791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,9 +453,16 @@ MonoBehaviour:
   eventName: Beginning
   objectsToActivate: []
   objectsToDeactivate: []
-  nextEventCondition1: {fileID: 0}
-  nextEventCondition2: {fileID: 0}
-  subEvents: []
+  subEvents:
+  - message: 
+    audioClip: {fileID: 0}
+    audioSource: {fileID: 0}
+    activateObjects: []
+    deactivateObjects: []
+    delayBeforeNext: 0
+  conditionObject: {fileID: 1792715858}
+  nextEvent: {fileID: 0}
+  assignedConditionName: PlayerEnteredACodeOf3Digits
 --- !u!1 &91729310
 GameObject:
   m_ObjectHideFlags: 0
@@ -2495,6 +2503,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 44267789}
+  - {fileID: 1792715859}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &405750945
@@ -8363,6 +8372,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4147759556342434, guid: 958d3b31b640ec34797cc16885bea1ce, type: 3}
   m_PrefabInstance: {fileID: 1745986733}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1792715857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1792715859}
+  - component: {fileID: 1792715858}
+  m_Layer: 0
+  m_Name: Conditions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1792715858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792715857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a64de02d87e124da30ed488b7b32b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conditionName: PlayerEnteredACodeOf3Digits
+  conditionMet: 0
+--- !u!4 &1792715859
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792715857}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 405286410}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1829814802
 PrefabInstance:
   m_ObjectHideFlags: 0
