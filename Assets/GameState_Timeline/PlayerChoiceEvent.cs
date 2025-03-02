@@ -7,10 +7,19 @@ using UnityEngine.UI;
 [System.Serializable] // Allows each choice to be editable in the Inspector
 public class Choice
 {
-    public string choiceName; // Displayed in Inspector    
+    [Header("Choice")]
     public BoolCondition conditionObject; // External bool condition (optional)
-    public TimelineEventBase nextEvent; // Event to transition to
+        
+    [SerializeField, Tooltip("Displays the name of the assigned condition for clarity")]
+    public string choiceName; // Read-only in Inspector
+    [Space(35)]
 
+    [Space(15)]
+    [SerializeField, Tooltip("Displays the next event name (read-only)")]
+    private string nextEventName;
+    public TimelineEventBase nextEvent; // Event to transition to
+   
+    
     [Header("Optional Constraints")]
     public List<Constraint> requiredConditions = new List<Constraint>(); // All must pass
 
@@ -20,7 +29,23 @@ public class Choice
         public BoolCondition condition; // The bool condition to check
         [Header("Condition to be met: if deselected, must be false ")]
         public bool mustBeTrue = true;  // Should this condition be TRUE or FALSE?
-    }    
+    }
+
+    /// <summary>
+    /// Updates the read-only string so it shows the current nextEvent name.
+    /// </summary>
+    public void UpdateNextEventName()
+    {
+        if (nextEvent != null)
+            nextEventName = nextEvent.eventName;
+        else
+            nextEventName = "None";
+    }
+
+    public void UpdateConditionName()
+    {
+        choiceName = conditionObject != null ? conditionObject.conditionName : "None";
+    }
 }
 
 public class PlayerChoiceEvent : TimelineEventBase
@@ -92,4 +117,21 @@ public class PlayerChoiceEvent : TimelineEventBase
     } 
 
     public override bool CheckCondition() => false; // Manually triggered by button clicks
+
+    /// <summary>
+    /// Ensures the 'nextEventName' fields are always up to date in the Inspector.
+    /// </summary>
+    private void OnValidate()
+    {
+        for (int i = 0; i < choices.Count; i++)
+        {
+            var tempChoice = choices[i];
+            tempChoice.UpdateNextEventName();
+            tempChoice.UpdateConditionName();
+            choices[i] = tempChoice;  // Important for structs
+        }
+
+        
+    }
+
 }
