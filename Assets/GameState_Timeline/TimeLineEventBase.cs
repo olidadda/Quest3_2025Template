@@ -1,14 +1,16 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
 public abstract class TimelineEventBase : MonoBehaviour
 {
-    [Header("Event Setup")]
+    
     public string eventName;
+    [Space(30)]
     public GameObject[] objectsToActivate;
     public GameObject[] objectsToDeactivate;
+    
 
     //[Header("Next Events Based on Conditions")]
     //public TimelineEventBase nextEventCondition1;
@@ -33,8 +35,23 @@ public abstract class TimelineEventBase : MonoBehaviour
 
     protected void SetupPhase()
     {
-        foreach (var obj in objectsToActivate) obj.SetActive(true);
-        foreach (var obj in objectsToDeactivate) obj.SetActive(false);
+        if (objectsToActivate != null)
+        {
+            foreach (var obj in objectsToActivate)
+            {
+                if (obj != null) obj.SetActive(true);
+                else Debug.LogWarning("⚠️ Missing reference in objectsToActivate!");
+            }
+        }
+
+        if (objectsToDeactivate != null)
+        {
+            foreach (var obj in objectsToDeactivate)
+            {
+                if (obj != null) obj.SetActive(false);
+                else Debug.LogWarning("⚠️ Missing reference in objectsToDeactivate!");
+            }
+        }
     }
 
     

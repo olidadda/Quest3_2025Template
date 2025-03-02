@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class IDNumberDisplay : MonoBehaviour
 {
+    [Header("References")]
     public InputHandler inputHandler;
     public GameObject[] digitSlots; // Assign N parent GameObjects, each containing 0-9 models.
+    public BoolCondition conditionObject; // The bool condition to reflect "all digits entered"
 
     private string displayedNumber = "";
 
-    private void Start()
+    private void OnEnable()
     {
-        inputHandler.OnInputUpdated += UpdateDisplay;
+        if (inputHandler != null)
+            inputHandler.OnInputUpdated += UpdateDisplay;
     }
 
     private void UpdateDisplay(string newInput)
@@ -24,6 +27,13 @@ public class IDNumberDisplay : MonoBehaviour
 
         displayedNumber = newInput;
         UpdateVisuals();
+
+        // Check if all digit slots are filled
+        if (conditionObject != null)
+        {
+            bool allDigitsFilled = (displayedNumber.Length == digitSlots.Length);
+            conditionObject.conditionMet = allDigitsFilled;
+        }
     }
 
     private void UpdateVisuals()
@@ -37,7 +47,7 @@ public class IDNumberDisplay : MonoBehaviour
             }
             else
             {
-                DeactivateAll(digitSlots[i]); // Hide unused digit slots
+                DeactivateSlotDigits(digitSlots[i]); // Hide unused digit slots
             }
         }
     }
@@ -50,7 +60,7 @@ public class IDNumberDisplay : MonoBehaviour
         }
     }
 
-    private void DeactivateAll(GameObject slot)
+    private void DeactivateSlotDigits(GameObject slot)
     {
         foreach (Transform child in slot.transform)
         {
@@ -61,5 +71,11 @@ public class IDNumberDisplay : MonoBehaviour
     public void ConfirmChoice()
     {
         Debug.Log("User confirmed code: " + displayedNumber);
+    }
+
+    private void OnDisable()
+    {
+        if (inputHandler != null)
+            inputHandler.OnInputUpdated -= UpdateDisplay;
     }
 }
