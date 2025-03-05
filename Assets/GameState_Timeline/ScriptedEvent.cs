@@ -51,10 +51,10 @@ public class ScriptedEvent : TimelineEventBase
 
     public override void Execute()
     {
-        Debug.Log("Starting scripted event: " + eventName);
-        ResetConditions(); //Reset specified bool conditions before running the event
+        Debug.Log("Starting scripted event: " + eventName);        
         SetupPhase();        
         StartCoroutine(PlaySubEvents());
+        
     }
 
     
@@ -130,6 +130,7 @@ public class ScriptedEvent : TimelineEventBase
             yield return new WaitUntil(AllConditionsMet);
         }
 
+        ResetConditions(); //Reset specified bool conditions for when I come back to this event
         Transition();
     }
 

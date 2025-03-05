@@ -6,7 +6,7 @@ public class IDNumberDisplay : MonoBehaviour
 {
     [Header("References")]
     public InputHandler inputHandler;
-    public GameObject[] digitSlots; // Assign N parent GameObjects, each containing 0-9 models.
+    public GameObject[] digitSlots; 
     public BoolCondition conditionObject; // The bool condition to reflect "all digits entered"
 
     private string displayedNumber = "";
@@ -19,11 +19,11 @@ public class IDNumberDisplay : MonoBehaviour
 
     private void UpdateDisplay(string newInput)
     {
-        // Trim input to fit within available digit slots
-        if (newInput.Length > digitSlots.Length)
-        {
-            newInput = newInput.Substring(0, digitSlots.Length);
-        }
+        //// Trim input to fit within available digit slots
+        //if (newInput.Length > digitSlots.Length)
+        //{
+        //    newInput = newInput.Substring(0, digitSlots.Length);
+        //}
 
         displayedNumber = newInput;
         UpdateVisuals();

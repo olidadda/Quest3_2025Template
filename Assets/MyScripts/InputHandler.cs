@@ -9,25 +9,44 @@ public class InputHandler : MonoBehaviour
     public event Action<string> OnInputConfirmed;
     public event Action OnInputCancelled;
 
-    //[Tooltip("0 = No limit on input length. Otherwise, input is capped at this value.")]
-    //[SerializeField] private int maxLength = 3;
-    //[Tooltip("0 = No automatic line breaks. Otherwise, inserts a line break every X characters.")]
-    //[SerializeField] private int autoLineBreakInterval = 5; // Auto break interval
+    [Tooltip("0 or negative => No limit on input length; otherwise, input is capped at this value.")]
+    [SerializeField]
+    private int maxLength = 3;
 
     private string currentInput = "";
 
-    public void ReceiveInput(string input)
+    public void ReceiveCharacter(string character)
     {
-        if (!string.IsNullOrEmpty(input))
+        // If for some reason Unity passes an empty or multi-length string, you handle it:
+        if (string.IsNullOrEmpty(character))
+            return; // do nothing
+
+        // The first char is really all we care about
+        char c = character[0];
+
+        // Enforce length if needed
+        if (maxLength <= 0 || currentInput.Length < maxLength)
         {
-            ReceiveInput(input[0]); // Calls the char version
+            currentInput += c;
+            OnInputUpdated?.Invoke(currentInput);
         }
     }
-    public void ReceiveInput(char input)
-    { 
-            currentInput += input;
-            OnInputUpdated?.Invoke(currentInput);        
+
+    public void ReceiveString(string input)
+    {
+        if (string.IsNullOrEmpty(input)) return;
+
+        foreach (char c in input)
+        {
+            // Stop if at max length
+            if (maxLength > 0 && currentInput.Length >= maxLength)
+                break;
+            currentInput += c;
+        }
+
+        OnInputUpdated?.Invoke(currentInput);
     }
+
 
     public void CancelInput()
     {        

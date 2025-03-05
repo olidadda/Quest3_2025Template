@@ -7,6 +7,7 @@ using UnityEngine.UI;
 [System.Serializable] // Allows each choice to be editable in the Inspector
 public class Choice
 {
+
     [Header("Choice")]
     public BoolCondition conditionObject; // External bool condition (optional)
         
@@ -50,6 +51,12 @@ public class Choice
 
 public class PlayerChoiceEvent : TimelineEventBase
 {
+    [Space(5)]
+    public BoolCondition[] conditionsToReset;
+    [SerializeField, Tooltip("Displays names of reset conditions")]
+    private string[] resetConditionNames; // Read-only in Inspector
+    [Space(22)]
+
     [Header("Player Choices")]
     public List<Choice> choices = new List<Choice>();
 
@@ -107,6 +114,8 @@ public class PlayerChoiceEvent : TimelineEventBase
         // Trigger the next event
         if (chosen.nextEvent != null)
         {
+            ResetConditions();
+
             Debug.Log($" Transitioning to next event: {chosen.nextEvent.eventName}");
             chosen.nextEvent.Execute(); // 🔹 Directly execute the next event
         }
@@ -114,7 +123,42 @@ public class PlayerChoiceEvent : TimelineEventBase
         {
             Debug.LogWarning($"No next event assigned for choice: {chosen.choiceName}");
         }
-    } 
+    }
+
+    private void ResetConditions()
+    {
+        if (conditionsToReset != null)
+        {
+            List<string> conditionNames = new List<string>();
+            foreach (var condition in conditionsToReset)
+            {
+                if (condition != null)
+                {
+                    condition.ResetCondition();
+                    conditionNames.Add(condition.conditionName);
+                    Debug.Log($"Resetting condition: {condition.conditionName}");
+                }
+            }
+            resetConditionNames = conditionNames.ToArray();
+        }
+    }
+    private void UpdateResetConditionNames()
+    {
+        if (conditionsToReset != null)
+        {
+            List<string> conditionNames = new List<string>();
+            foreach (var condition in conditionsToReset)
+            {
+                if (condition != null)
+                    conditionNames.Add(condition.conditionName);
+            }
+            resetConditionNames = conditionNames.ToArray();
+        }
+        else
+        {
+            resetConditionNames = new string[0]; // Empty list if no conditions exist
+        }
+    }
 
     public override bool CheckCondition() => false; // Manually triggered by button clicks
 
@@ -123,6 +167,8 @@ public class PlayerChoiceEvent : TimelineEventBase
     /// </summary>
     private void OnValidate()
     {
+        UpdateResetConditionNames();
+
         for (int i = 0; i < choices.Count; i++)
         {
             var tempChoice = choices[i];
