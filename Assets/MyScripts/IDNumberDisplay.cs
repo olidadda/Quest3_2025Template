@@ -8,6 +8,9 @@ public class IDNumberDisplay : MonoBehaviour
     public InputHandler inputHandler;
     public GameObject[] digitSlots; 
     public BoolCondition conditionObject; // The bool condition to reflect "all digits entered"
+    public enum PlayerIDState { None, Logged }
+    public PlayerIDState playerIDState = PlayerIDState.None;
+    [SerializeField] private int playerID;
 
     private string displayedNumber = "";
 
@@ -71,6 +74,8 @@ public class IDNumberDisplay : MonoBehaviour
     public void ConfirmChoice()
     {
         Debug.Log("User confirmed code: " + displayedNumber);
+        playerID = int.Parse(displayedNumber);
+        playerIDState = PlayerIDState.Logged;
     }
 
     private void OnDisable()

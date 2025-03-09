@@ -8,10 +8,14 @@ public class GameStateManager : MonoBehaviour
 
     public enum GameState { Lobby, SceneA, SceneB, Pause, EndGame }
     public enum MenuState { None, MainMenu, Options, Credits, Loading }
+    
+
+    
 
     [Header("Current States")]
     public GameState currentGameState = GameState.Lobby;
     public MenuState currentMenuState = MenuState.None;
+    
 
     private void Awake()
     {

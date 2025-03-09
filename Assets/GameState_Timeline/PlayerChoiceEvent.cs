@@ -32,6 +32,10 @@ public class Choice
         public bool mustBeTrue = true;  // Should this condition be TRUE or FALSE?
     }
 
+    [Header("Custom Actions")]
+    [Tooltip("Events triggered when this choice is selected")]
+    public UnityEngine.Events.UnityEvent onChoiceSelected;
+
     /// <summary>
     /// Updates the read-only string so it shows the current nextEvent name.
     /// </summary>
@@ -109,7 +113,9 @@ public class PlayerChoiceEvent : TimelineEventBase
             }
         }
 
-        Debug.Log($"Player selected: {chosen.choiceName}");       
+        Debug.Log($"Player selected: {chosen.choiceName}");
+
+        chosen.onChoiceSelected?.Invoke(); //call Unity Event in wrapper
 
         // Trigger the next event
         if (chosen.nextEvent != null)
