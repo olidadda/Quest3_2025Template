@@ -1,0 +1,406 @@
+fileFormatVersion: 2
+guid: 55add6b36ff428143a813bfc82e9b2ed
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 75941f6d8fb0e494abeec7a436da412d, type: 3}
+  _shape: 80
+  _plane:
+    surfaceType: 1
+    orientation: 0
+    direction: 0
+    pivotPosition: 1
+    doubleSided: 1
+    faceSegments: {x: 3, y: 3}
+    width: 3
+    height: 3
+    flipNormals: 0
+  _planeFlex:
+    surfaceType: 0
+    orientation: 0
+    direction: 0
+    pivotPosition: 1
+    doubleSided: 1
+    faceSegments: {x: 3, y: 3}
+    width: 3
+    height: 3
+    vertexOffsets:
+      forOrientationUp:
+        leftForwardVtx: {x: 0, y: -1, z: 0}
+        rightForwardVtx: {x: 0, y: 1, z: 0}
+        leftBackwardVtx: {x: 0, y: 1, z: 0}
+        rightBackwardVtx: {x: 0, y: -1, z: 0}
+      forOrientationDown:
+        leftForwardVtx: {x: 0, y: 0, z: 0}
+        rightForwardVtx: {x: 0, y: 0, z: 0}
+        leftBackwardVtx: {x: 0, y: 0, z: 0}
+        rightBackwardVtx: {x: 0, y: 0, z: 0}
+      forOrientationLeft:
+        upForwardVtx: {x: 0, y: 0, z: 0}
+        upBackwardVtx: {x: 0, y: 0, z: 0}
+        downForwardVtx: {x: 0, y: 0, z: 0}
+        downBackwardVtx: {x: 0, y: 0, z: 0}
+      forOrientationRight:
+        upForwardVtx: {x: 0, y: 0, z: 0}
+        upBackwardVtx: {x: 0, y: 0, z: 0}
+        downForwardVtx: {x: 0, y: 0, z: 0}
+        downBackwardVtx: {x: 0, y: 0, z: 0}
+      forOrientationForward:
+        upLeftVtx: {x: 0, y: 0, z: 0}
+        upRightVtx: {x: 0, y: 0, z: 0}
+        downLeftVtx: {x: 0, y: 0, z: 0}
+        downRightVtx: {x: 0, y: 0, z: 0}
+      forOrientationBackward:
+        upLeftVtx: {x: 0, y: 0, z: 0}
+        upRightVtx: {x: 0, y: 0, z: 0}
+        downLeftVtx: {x: 0, y: 0, z: 0}
+        downRightVtx: {x: 0, y: 0, z: 0}
+    flipNormals: 0
+  _planeSuperEllipse:
+    surfaceType: 0
+    orientation: 0
+    direction: 0
+    pivotPosition: 1
+    doubleSided: 1
+    width: 3
+    height: 2
+    n1: 0.8
+    n2: 0
+    n3: 0
+    n4: 0.8
+    segments: 100
+    flipNormals: 0
+  _box:
+    surfaceType: 1
+    direction: 0
+    pivotPosition: 1
+    width: 3
+    height: 3
+    depth: 3
+    segments: {x: 1, y: 1}
+    flipNormals: 0
+  _boxFlex:
+    surfaceType: 0
+    direction: 0
+    pivotPosition: 1
+    width: 3
+    height: 3
+    depth: 3
+    segments:
+      up: {x: 5, y: 5}
+      down: {x: 5, y: 5}
+      left: {x: 10, y: 10}
+      right: {x: 10, y: 10}
+      forward: {x: 10, y: 10}
+      backward: {x: 10, y: 10}
+    vertexOffsets:
+      upLeftForwardVtx: {x: 0, y: 0, z: 0}
+      upRightForwardVtx: {x: 0, y: 0, z: 0}
+      upLeftBackwardVtx: {x: 0, y: 0, z: 0}
+      upRightBackwardVtx: {x: 0, y: 0, z: 0}
+      downLeftForwardVtx: {x: 0, y: 0, z: 0}
+      downRightForwardVtx: {x: 0, y: 0, z: 0}
+      downLeftBackwardVtx: {x: 0, y: 0, z: 0}
+      downRightBackwardVtx: {x: 1, y: -0.2, z: 1.5}
+    flipNormals: 0
+  _boxRounded:
+    surfaceType: 0
+    direction: 0
+    pivotPosition: 1
+    width: 3
+    height: 3
+    depth: 3
+    radius: 0.2
+    segments: 5
+    flipNormals: 0
+  _boxSuperEllipsoid:
+    surfaceType: 0
+    direction: 0
+    pivotPosition: 1
+    width: 3
+    height: 2.5
+    depth: 3
+    n1: 0
+    n2: 0.5
+    segments: 50
+    flipNormals: 0
+  _boxSuperEllipsoidPlus:
+    surfaceType: 0
+    direction: 0
+    pivotPosition: 1
+    width: 3
+    height: 2.5
+    depth: 3
+    n1_TopEdges: 0
+    n1_BottomEdges: 0
+    n2_RightFrontEdge: 0
+    n2_RightBackEdge: 0
+    n2_LeftFrontEdge: 0
+    n2_LeftBackEdge: 0
+    segments: 50
+    flipNormals: 0
+  _pyramid:
+    surfaceType: 1
+    direction: 0
+    pivotPosition: 1
+    width: 3
+    height: 2.5
+    depth: 3
+    segmentsSides: {x: 10, y: 10}
+    segmentsBottom: {x: 5, y: 5}
+    flipNormals: 0
+  _pyramidFlex:
+    surfaceType: 0
+    direction: 0
+    pivotPosition: 1
+    width: 3
+    height: 2.5
+    depth: 3
+    segmentsSides: {x: 10, y: 10}
+    segmentsBottom: {x: 5, y: 5}
+    vertexOffsets:
+      upVtx: {x: 1.5, y: 0, z: -1.5}
+      downLeftForwardVtx: {x: -1.5, y: -2, z: -0.5}
+      downRightForwardVtx: {x: 0, y: 0, z: 0}
+      downLeftBackwardVtx: {x: 0, y: 0, z: 0}
+      downRightBackwardVtx: {x: 0, y: 0, z: 0}
+    flipNormals: 0
+  _pyramidPerfectTriangularFlex:
+    surfaceType: 0
+    direction: 0
+    pivotPosition: 1
+    length: 3
+    segmentsSides: {x: 10, y: 10}
+    segmentsBottom: {x: 5, y: 5}
+    vertexOffsets:
+      upVtx: {x: 0, y: 0, z: 0}
+      downForwardVtx: {x: 0, y: 0, z: 0}
+      downLeftBackwardVtx: {x: 0, y: 0, z: 0}
+      downRightBackwardVtx: {x: 0, y: 0, z: 0}
+    flipNormals: 0
+  _sphere:
+    surfaceType: 0
+    direction: 0
+    pivotPosition: 1
+    radius: 1.5
+    columns: 24
+    rows: 12
+    flipNormals: 0
+  _sphereIco:
+    surfaceType: 0
+    direction: 0
+    pivotPosition: 1
+    radius: 1.5
+    subdivision: 2
+    uVPattern: 0
+    flipNormals: 0
+  _sphereFibonacci:
+    surfaceType: 0
+    direction: 0
+    pivotPosition: 1
+    radius: 1.5
+    vertices: 1000
+    uVPattern: 0
+    flipNormals: 0
+  _tearDrop:
+    surfaceType: 0
+    direction: 0
+    pivotPosition: 1
+    width: 3
+    height: 6
+    depth: 3
+    segments: 30
+    flipNormals: 0
+  _cylinder:
+    surfaceType: 0
+    direction: 0
+    pivotPosition: 1
+    topRadius: 1
+    bottomRadius: 1
+    Height: 3
+    columns: 24
+    rows: 12
+    caps: 1
+    flipNormals: 0
+  _cone:
+    surfaceType: 0
+    direction: 0
+    pivotPosition: 1
+    topRadius: 0
+    bottomRadius: 1
+    Height: 3
+    columns: 24
+    rows: 12
+    caps: 1
+    flipNormals: 0
+  _clouds:
+    target: 6
+    useGlobalResolution: 0
+    globalResolution: 64
+    cloudsPreset1:
+      surfaceType: 0
+      direction: 0
+      pivotPosition: 1
+      flipNormals: 0
+      resolution: 64
+      roundness: 0
+      numberOfSpheres:
+      - radius: 0.3
+        position: {x: -1.25, y: 0, z: 0}
+        blendWithNextSphere: 64
+      - radius: 0.5
+        position: {x: -0.45, y: 0, z: 0}
+        blendWithNextSphere: 64
+      - radius: 0.5
+        position: {x: 0.45, y: 0, z: 0}
+        blendWithNextSphere: 64
+      - radius: 0.3
+        position: {x: 1.25, y: 0, z: 0}
+        blendWithNextSphere: 64
+    cloudsPreset2:
+      surfaceType: 0
+      direction: 0
+      pivotPosition: 1
+      flipNormals: 0
+      resolution: 64
+      roundness: 0
+      numberOfSpheres:
+      - radius: 0.7
+        position: {x: -1, y: 0, z: 0.25}
+        blendWithNextSphere: 0.2
+      - radius: 1
+        position: {x: -0.5, y: 0.5, z: 0}
+        blendWithNextSphere: 0.2
+      - radius: 0.7
+        position: {x: 0, y: 0.1, z: -0.5}
+        blendWithNextSphere: 0.2
+      - radius: 0.8
+        position: {x: 0.8, y: 0.3, z: -0.1}
+        blendWithNextSphere: 0.2
+    cloudsPreset3:
+      surfaceType: 0
+      direction: 0
+      pivotPosition: 1
+      flipNormals: 0
+      resolution: 64
+      roundness: 0
+      numberOfSpheres:
+      - radius: 0.5
+        position: {x: -0.6, y: 0, z: 0}
+        blendWithNextSphere: 1
+      - radius: 0.7
+        position: {x: 0, y: 0.2, z: 0}
+        blendWithNextSphere: 1
+      - radius: 0.5
+        position: {x: 0.6, y: 0, z: 0}
+        blendWithNextSphere: 1
+    cloudsPreset4:
+      surfaceType: 0
+      direction: 0
+      pivotPosition: 1
+      flipNormals: 0
+      resolution: 32
+      roundness: 0
+      numberOfSpheres:
+      - radius: 0.25
+        position: {x: -0.2, y: 0, z: 0}
+        blendWithNextSphere: 1
+      - radius: 0.4
+        position: {x: 0.2, y: 0.1, z: 0}
+        blendWithNextSphere: 1
+    cloudsPreset5:
+      surfaceType: 0
+      direction: 0
+      pivotPosition: 1
+      flipNormals: 0
+      resolution: 64
+      roundness: 0
+      numberOfSpheres:
+      - radius: 0.8
+        position: {x: -2.3, y: 0, z: 0}
+        blendWithNextSphere: 16
+      - radius: 0.8
+        position: {x: -1.3, y: 0, z: 0}
+        blendWithNextSphere: 16
+      - radius: 1
+        position: {x: 0, y: 0, z: 0}
+        blendWithNextSphere: 16
+      - radius: 1.5
+        position: {x: 1.5, y: 0.4, z: 0}
+        blendWithNextSphere: 16
+      - radius: 1
+        position: {x: 3, y: 0.1, z: 0}
+        blendWithNextSphere: 16
+    cloudsPreset6:
+      surfaceType: 1
+      direction: 0
+      pivotPosition: 1
+      flipNormals: 0
+      resolution: 32
+      roundness: 0
+      numberOfSpheres:
+      - radius: 0.5
+        position: {x: -1.5, y: 0, z: 0.01}
+        blendWithNextSphere: 0
+      - radius: 0.7
+        position: {x: -0.9, y: 0, z: 0}
+        blendWithNextSphere: 0
+      - radius: 0.8
+        position: {x: -0.6, y: 0.4, z: 0.5}
+        blendWithNextSphere: 0
+      - radius: 0.8
+        position: {x: 0, y: 0, z: 0}
+        blendWithNextSphere: 0
+      - radius: 0.7
+        position: {x: 0.5, y: 0.3, z: 0.6}
+        blendWithNextSphere: 0
+      - radius: 0.5
+        position: {x: 0.9, y: 0, z: 0.01}
+        blendWithNextSphere: 0
+    makeFromScratch:
+      surfaceType: 0
+      direction: 0
+      pivotPosition: 1
+      flipNormals: 0
+      resolution: 32
+      roundness: 0
+      numberOfSpheres:
+      - radius: 0.5
+        position: {x: -0.25, y: 0, z: 0}
+        blendWithNextSphere: 1
+      - radius: 0.5
+        position: {x: 0.25, y: 0, z: 0}
+        blendWithNextSphere: 1
+  _supershape:
+    surfaceType: 0
+    direction: 0
+    pivotPosition: 1
+    segments: 100
+    radius: 1
+    lonShape_N1: 0.249778
+    lonShape_N2: 47.8498
+    lonShape_N3: -0.8625
+    lonShape_M: 6
+    lonShape_A: 1
+    lonShape_B: 1
+    latShape_N1: -76.8867
+    latShape_N2: 0.521395
+    latShape_N3: -56.75
+    latShape_M: 7
+    latShape_A: 1
+    latShape_B: 1
+    flipNormals: 0
+  _meshCut:
+    numOfCuts:
+    - doMeshCut: 0
+      cutPoint1: {x: 0, y: 0, z: 0}
+      cutPoint2: {x: 0, y: 0, z: 1}
+      cutPoint3: {x: -1, y: 0.5, z: 0}
+      offset: {x: 0, y: 0, z: 0}
+      useSide: 0
+      caps: 1
+      capMaterial: {instanceID: 0}

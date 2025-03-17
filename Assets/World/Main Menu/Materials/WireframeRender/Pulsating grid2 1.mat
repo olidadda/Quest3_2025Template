@@ -68,13 +68,13 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EmissionIntensity: 5.508045
+    - _EmissionIntensity: 0.071710385
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _GridScale: 1
-    - _LineWidthX: 0.03
-    - _LineWidthY: 0.03
+    - _LineWidthX: 0.02
+    - _LineWidthY: 0.02
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1

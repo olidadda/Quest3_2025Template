@@ -13,6 +13,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
+  - _USEADAPTIVEANGULARSEGMENTS_ON
   - _WORLDUV_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -62,7 +63,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AngularSegments: 279
+    - _AngularSegments: 15
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -70,9 +71,9 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _GridScale: 1.72
-    - _LineWidthX: 0.041
-    - _LineWidthY: 0.041
+    - _GridScale: 2.22
+    - _LineWidthX: 0.01
+    - _LineWidthY: 0.028
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -81,12 +82,12 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _UseAdaptiveAngularSegments: 0
+    - _UseAdaptiveAngularSegments: 1
     - _WorldUV: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0, g: 0, b: 0, a: 1}
+    - _BaseColor: {r: 0.5350064, g: 0.7987421, b: 0.64426833, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _LineColor: {r: 1, g: 1, b: 1, a: 1}
+    - _LineColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
