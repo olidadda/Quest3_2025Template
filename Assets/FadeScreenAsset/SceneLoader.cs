@@ -37,7 +37,12 @@ public class SceneLoader : MonoBehaviour
     public void GoToMiniGame(int sceneIndex)
     {        
         StartCoroutine(GotoSceneTransitionRoutine(sceneIndex));        
-    }   
+    }
+
+    public void UnloadScene(int sceneIndex)
+    {
+        StartCoroutine(UnloadSceneRoutine(sceneIndex));
+    }
 
     IEnumerator GotoSceneTransitionRoutine(int sceneIndex)
     {
@@ -52,7 +57,7 @@ public class SceneLoader : MonoBehaviour
         }
 
         //yield return new WaitForSeconds(fadeScreen.fadeDuration);
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
         operation.allowSceneActivation = false;
 
         float timer = 0; 
@@ -64,5 +69,28 @@ public class SceneLoader : MonoBehaviour
 
         operation.allowSceneActivation = true;
 
+    }
+
+    
+
+    IEnumerator UnloadSceneRoutine(int sceneIndex)
+    {
+        fadeScreen.FadeIn();
+
+        float timer = 0;
+        while (timer <= fadeScreen.fadeoutDuration)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        // Begin unloading the scene
+        AsyncOperation unloadOperation = SceneManager.UnloadSceneAsync(sceneIndex);
+        while (!unloadOperation.isDone)
+        {
+            yield return null; // Wait until the scene is fully unloaded
+        }
+
+        fadeScreen.FadeOut();
     }
 }
