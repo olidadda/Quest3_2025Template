@@ -27,7 +27,7 @@ public class GameStateManager : MonoBehaviour
 
         Instance = this;
 
-        DontDestroyOnLoad(gameObject); // Persist across scenes
+        //DontDestroyOnLoad(gameObject); // Persist across scenes
     }
 
     public void SetGameState(GameState newState)
