@@ -26,6 +26,9 @@ Shader "Pristine Radial Grid"
             #pragma vertex vert
             #pragma fragment frag
 
+            #pragma multi_compile_instancing
+            #include "UnityInstancing.cginc"
+
             #include "UnityCG.cginc"
 
             // needed for fine derivatives
@@ -35,12 +38,16 @@ Shader "Pristine Radial Grid"
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
+
+                UNITY_VERTEX_INPUT_INSTANCE_ID //Insert
             };
 
             struct v2f
             {
                 float4 pos : SV_POSITION;
                 float2 uv : TEXCOORD0;
+
+                UNITY_VERTEX_OUTPUT_STEREO //Insert
             };
 
             bool _WorldUV;
@@ -49,6 +56,11 @@ Shader "Pristine Radial Grid"
             v2f vert (appdata v)
             {
                 v2f o;
+
+                 UNITY_SETUP_INSTANCE_ID(v); //Insert
+                UNITY_INITIALIZE_OUTPUT(v2f, o); //Insert
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o); //Insert
+
                 o.pos = UnityObjectToClipPos(v.vertex);
 
                 if (_WorldUV)

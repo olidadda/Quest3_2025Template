@@ -12,7 +12,7 @@ public class BoolCondition : MonoBehaviour
     [Tooltip("All of these conditions must be TRUE before this condition can be set to TRUE")]
     [SerializeField] List<BoolCondition> neededConditions = new List<BoolCondition>();
 
-
+   
 
     public void SetCondition(bool state)
     {

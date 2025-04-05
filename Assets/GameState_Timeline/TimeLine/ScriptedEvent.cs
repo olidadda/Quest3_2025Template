@@ -4,47 +4,62 @@ using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[System.Serializable] // Allows sub-events to be editable in Inspector
-public class ScriptedSubEvent
-{    
-    public string message;
-    public AudioClip audioClip;
-    public AudioSource audioSource;
-    public GameObject[] activateObjects;
-    public GameObject[] deactivateObjects;
-    public float delayBeforeNext = 0f; // Time before executing next subevent
+
+//[System.Serializable] // Allows sub-events to be editable in Inspector
+//public class ScriptedSubEvent
+//{    
+//    public string message;
+//    public AudioClip audioClip;
+//    public AudioSource audioSource;
+//    public GameObject[] activateObjects;
+//    public GameObject[] deactivateObjects;
+//    public float delayBeforeNext = 0f; // Time before executing next subevent
     
-}
+//    [Header("Custom Actions")]
+//    [Tooltip("Events triggered when this subevent occurs")]
+//    public UnityEngine.Events.UnityEvent onSubeventTriggered;
+
+//}
 
 public class ScriptedEvent : TimelineEventBase
 {
     [Space(20)]
-    [Header("Resets Boolean Conditions before running Event")]
+    [Header("Resets Boolean Conditions after running Event")]
     [Space(5)]
     public BoolCondition[] conditionsToReset;
-    [SerializeField, Tooltip("Displays names of reset conditions")]
+    [SerializeField, Tooltip("Readonly display names of reset conditions")]
     private string[] resetConditionNames; // Read-only in Inspector
     [Space(2)]
+
     [Space(20)]
     [Header("Scripted Sub-Events")]
+    [Tooltip("Sequence of actions, sounds, and delays that make up this event.")]
     public List<ScriptedSubEvent> subEvents = new List<ScriptedSubEvent>();
+
+
     [Header("Input Recognition Option: Allow player to skip subevents by satisfying the condition")]
     public bool allowSkip = false; // Allows skipping sub-events if condition is met
+
     [Header("Input Recognition Option: Require subevents to finish before accepting the condition to be fulfilled")]
     public bool requireAllSubEventsToFinish = false; // Blocks input until sub-events complete
     [Space(45)]
 
-    [Header("Event Completion Condition")]
+
+
+    [Header("Event Completion Conditions (Primary AND Group)")]
+
+    [Tooltip("The main condition that MUST be met (along with all 'Additional Conditions') for this path to completion")]
     public BoolCondition conditionObject; // Direct reference to a bool-holding script
-    [SerializeField, Tooltip("Displays the name of the assigned condition for clarity")]
+    [SerializeField, Tooltip("Read-only display of the primary condition's name")]
     private string assignedConditionName; // Read-only in Inspector
     [Space(35)]
 
-    [Tooltip("Any additional conditions that must also be met.")]
+    [Tooltip("Any secondary conditions that MUST ALSO be met along with the Primary Condition")]
     public List<BoolCondition> additionalConditions; // Extra conditions to check  
-    [SerializeField, Tooltip("Names of any assigned additional conditions (read-only)")]
+    [SerializeField, Tooltip("Read-only display of additional required conditions.")]
     private string[] additionalConditionNames; // Read-only in Inspector
-
+    [Space(35)]
+    
     [Space(30)]
     public TimelineEventBase nextEvent; // 🔹 Defines the next event after this one
 
@@ -99,6 +114,7 @@ public class ScriptedEvent : TimelineEventBase
             foreach (var obj in subEvent.activateObjects) obj.SetActive(true);
             foreach (var obj in subEvent.deactivateObjects) obj.SetActive(false);
 
+            subEvent.onSubeventTriggered?.Invoke(); //call Unity Event in wrapper
 
 
             // ⏳ Optimized Timer 

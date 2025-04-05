@@ -8,8 +8,10 @@ public class GameStateManager : MonoBehaviour
 
     public enum GameState { Lobby, SceneA, SceneB, Pause, EndGame }
     public enum MenuState { None, MainMenu, Options, Credits, Loading }
-    
 
+    [SerializeField] private bool hasConfirmedIDNumber = false;
+
+    [SerializeField] private int iDNumber = 0;  
     
 
     [Header("Current States")]
@@ -44,5 +46,11 @@ public class GameStateManager : MonoBehaviour
 
     public bool IsGameState(GameState state) => currentGameState == state;
     public bool IsMenuState(MenuState state) => currentMenuState == state;
+
+    public void SetIDNumberAsAlreadyChosen(int iDnum)
+    {
+        hasConfirmedIDNumber |= true;
+        iDNumber = iDnum;
+    }
 }
 

@@ -76,6 +76,7 @@ public class IDNumberDisplay : MonoBehaviour
         Debug.Log("User confirmed code: " + displayedNumber);
         playerID = int.Parse(displayedNumber);
         playerIDState = PlayerIDState.Logged;
+        GameStateManager.Instance.SetIDNumberAsAlreadyChosen(playerID);
     }
 
     private void OnDisable()

@@ -1,96 +1,119 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
 public class SceneLoader : MonoBehaviour
 {
-    public FadeScreen fadeScreen;   
+    public FadeScreen fadeScreen;
 
-    public void GoToHomeScene()
+    private void Start()
     {
-        //FindObjectOfType<DelayAmbienceTrack>().FadeOutAudio();
-
-        if (SceneManager.GetActiveScene().buildIndex == 2)
-        {
-            StartCoroutine(EndGameAndLoadSceneFromGame2());
-        }
-        else
-        {
-            StartCoroutine(GotoSceneTransitionRoutine(0));
-            //SceneManager.LoadScene(0);
-        }
+        //Load Scene 1 (Menu) additively alongside persistent scene (which contains Scene Manager, Game State, Player, and persistent world objects)
+        StartCoroutine(StartInitialSceneLoad());
     }
 
-    private IEnumerator EndGameAndLoadSceneFromGame2()
+    private IEnumerator StartInitialSceneLoad()
+    {
+       
+        //yield return FadeOutAndWait();
+
+        // Load Scene 1 (Menu) additively alongside persistent scene
+        SceneManager.LoadScene(1, LoadSceneMode.Additive);
+
+        // Fade in once the scene is loaded, adjust fadeinDuration as needed
+        yield return FadeInAndWait();
+    }
+
+    public void GoToScene(int newSceneIndex, int oldSceneIndex)
     {        
-
-        //yield return new WaitUntil(() => StateManager.ins.scoring_Game2.endGameCompleted); //wait until bool true 
-
-        StartCoroutine(GotoSceneTransitionRoutine(0));
-        yield return null;
+        StartCoroutine(FadeTransitionBetweenAdditiveScenes(newSceneIndex, oldSceneIndex));        
     }
-
-
     
-    public void GoToMiniGame(int sceneIndex)
-    {        
-        StartCoroutine(GotoSceneTransitionRoutine(sceneIndex));        
+
+    IEnumerator FadeTransitionBetweenAdditiveScenes(int newSceneIndex, int oldSceneIndex)
+    {
+        // Fade out, wait for completion
+        yield return FadeOutAndWait();
+
+        //Wait until it's (almost) fully loaded, then activate
+        yield return LoadAdditiveSceneAndWait(newSceneIndex);
+
+        // Set the newly loaded scene as the active scene (helpful for lighting, references, etc.)
+        //SetActiveScene(newSceneIndex);
+
+        //Unload the old scene 
+        yield return UnloadOldSceneAndWait(oldSceneIndex);
+
+        // Fade in after new scene is loaded
+        yield return FadeInAndWait();
     }
 
-    public void UnloadScene(int sceneIndex)
+    private IEnumerator UnloadOldSceneAndWait(int oldSceneIndex)
     {
-        StartCoroutine(UnloadSceneRoutine(sceneIndex));
-    }
-
-    IEnumerator GotoSceneTransitionRoutine(int sceneIndex)
-    {
-        //this is outside the fade script because probably this object was persistent but it doesn't really make sense, the player should be persistent too
-        fadeScreen.FadeOut();
-
-        float timer1 = 0;
-        while (timer1 <= fadeScreen.fadeoutDuration)
+        if (oldSceneIndex != -1)
         {
-            timer1 += Time.deltaTime;
-            yield return null;
+            AsyncOperation unloadOperation = SceneManager.UnloadSceneAsync(oldSceneIndex);
+            while (!unloadOperation.isDone)
+            {
+                yield return null;
+            }
         }
+    }
 
-        //yield return new WaitForSeconds(fadeScreen.fadeDuration);
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
-        operation.allowSceneActivation = false;
+    private static void SetActiveScene(int newSceneIndex)
+    {
+        UnityEngine.SceneManagement.Scene newlyLoadedScene = SceneManager.GetSceneByBuildIndex(newSceneIndex);
+        SceneManager.SetActiveScene(newlyLoadedScene);
+    }
 
-        float timer = 0; 
-        while (timer <= fadeScreen.fadeoutDuration && !operation.isDone)
+    private IEnumerator WaitForSecondsRoutine(float duration)
+    {
+        float timer = 0;
+        while (timer <= duration)
         {
             timer += Time.deltaTime;
             yield return null;
         }
-
-        operation.allowSceneActivation = true;
-
     }
 
-    
+    private IEnumerator FadeOutAndWait()
+    {
+        fadeScreen.FadeOut();
+        yield return WaitForSecondsRoutine(fadeScreen.fadeoutDuration);
+    }
 
-    IEnumerator UnloadSceneRoutine(int sceneIndex)
+    private IEnumerator FadeInAndWait()
     {
         fadeScreen.FadeIn();
+        yield return WaitForSecondsRoutine(fadeScreen.fadeinDuration);
+    }
 
-        float timer = 0;
-        while (timer <= fadeScreen.fadeoutDuration)
+    private IEnumerator LoadAdditiveSceneAndWait(int newSceneIndex)
+    {
+        // Begin loading the new scene in the background, additively
+        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(newSceneIndex, LoadSceneMode.Additive);
+        loadOperation.allowSceneActivation = false;
+
+        // Wait until the scene is (almost) fully loaded
+        while (loadOperation.progress < 0.9f)
         {
-            timer += Time.deltaTime;
+            // You could display a progress bar or loading UI here
             yield return null;
         }
 
-        // Begin unloading the scene
-        AsyncOperation unloadOperation = SceneManager.UnloadSceneAsync(sceneIndex);
-        while (!unloadOperation.isDone)
+        // Scene is ready to be activated, but won't show until we allow it
+        loadOperation.allowSceneActivation = true;
+
+
+        //Optionally wait until the scene is actually done activating
+        while (!loadOperation.isDone)
         {
-            yield return null; // Wait until the scene is fully unloaded
+            yield return null;
         }
 
-        fadeScreen.FadeOut();
     }
+
 }
