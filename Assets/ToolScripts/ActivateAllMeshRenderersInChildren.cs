@@ -14,6 +14,12 @@ public class ActivateAllMeshRenderersInChildren : MonoBehaviour
         MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
         foreach (MeshRenderer renderer in renderers)
         {
+            // Skip the renderer if it's on the same GameObject as this script component
+            if (renderer.gameObject == this.gameObject)
+            {
+                continue; // Skip to the next renderer in the loop
+            }
+
             if (activated) { renderer.enabled = true; }
             else { renderer.enabled = false; }
             

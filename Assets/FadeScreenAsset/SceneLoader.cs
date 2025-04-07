@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     public FadeScreen fadeScreen;
+    [SerializeField] float delayBeforeFadeOut;
 
     private void Start()
     {
@@ -35,6 +36,7 @@ public class SceneLoader : MonoBehaviour
 
     IEnumerator FadeTransitionBetweenAdditiveScenes(int newSceneIndex, int oldSceneIndex)
     {
+        yield return new WaitForSeconds(delayBeforeFadeOut);
         // Fade out, wait for completion
         yield return FadeOutAndWait();
 
