@@ -12,11 +12,15 @@ public class FadeScreen : MonoBehaviour
     public Color fadeColor;
     Color nextPhaseOfColor;
     Renderer rend;
-    
+
+    private void Awake()
+    {
+        rend = GetComponent<Renderer>();
+    }
     // Start is called before the first frame update
     void Start()
     {
-        rend = GetComponent<Renderer>();
+       
         if (fadeOnStart)
         {
             FadeIn();
