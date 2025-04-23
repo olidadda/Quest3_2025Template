@@ -1,24 +1,9 @@
 fileFormatVersion: 2
-guid: f6945dc2072d6ec4abd479e2a2f3f001
+guid: 78110c1cdb6c9e548a7feda51de79f68
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Carbon
-    second: {fileID: 2100000, guid: bcac26ba72862d149ae145c2729f96ae, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Hydrogen
-    second: {fileID: 2100000, guid: 69190c44a6af26f40a330a65a3224187, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Oxygen
-    second: {fileID: 2100000, guid: d139a918fd6a5034ebde835222363912, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
