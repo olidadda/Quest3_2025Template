@@ -10,6 +10,19 @@ TagManager:
   - LocoButton
   - LocoText
   - VRHand
+  - water
+  - emptyFlask
+  - burner
+  - fullFlask
+  - flaskBase
+  - mais
+  - enzyme1
+  - glucose
+  - lacticAcid
+  - enzyme2
+  - disc
+  - printer
+  - pla
   layers:
   - Default
   - TransparentFX
