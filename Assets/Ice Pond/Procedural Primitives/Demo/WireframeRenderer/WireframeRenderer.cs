@@ -58,6 +58,20 @@ namespace ProceduralPrimitivesUtil.Demo
 
                 wireframeRenderer = null;
             }
+
+            //// Add material cleanup
+            //if (wireframeMaterialNoCull != null)
+            //{
+            //    if (Application.isPlaying) Destroy(wireframeMaterialNoCull);
+            //    else DestroyImmediate(wireframeMaterialNoCull);
+            //    wireframeMaterialNoCull = null;
+            //}
+            //if (wireframeMaterialCull != null)
+            //{
+            //    if (Application.isPlaying) Destroy(wireframeMaterialCull);
+            //    else DestroyImmediate(wireframeMaterialCull);
+            //    wireframeMaterialCull = null;
+            //}
         }
 
         void Validate()
@@ -191,6 +205,15 @@ namespace ProceduralPrimitivesUtil.Demo
         {
             var shaderLastName = cull ? "WireframeCull" : "WireframeNoCull";
             var shader = Shader.Find("ProceduralPrimitives/" + shaderLastName);
+
+            //// *** Add This Check ***
+            //if (shader == null)
+            //{
+            //    Debug.LogError($"Shader not found: {shaderLastName}. Cannot create material.", this);
+            //    return null; // Return null if shader not found
+            //}
+            //// *** End Check ***
+
             var material = new Material(shader);
             return material;
         }
@@ -275,6 +298,8 @@ namespace ProceduralPrimitivesUtil.Demo
 
             return processedMesh;
         }
+
+
 
     }
 }

@@ -1,3 +1,5 @@
+
+
 fixed4 _LineColor;
 float _LineSize;
 
@@ -6,6 +8,7 @@ struct appdata
     float4 vertex : POSITION;
     float3 normal : NORMAL;
     float2 uv : TEXCOORD0;
+    
 };
 
 struct v2f
