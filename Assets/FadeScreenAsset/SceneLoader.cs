@@ -10,6 +10,8 @@ public class SceneLoader : MonoBehaviour
     public FadeScreen fadeScreen;
     [SerializeField] float delayBeforeFadeOut;
 
+    [SerializeField] bool dontLoadMenuSceneAtStart;
+
     private void Start()
     {
         //Load Scene 1 (Menu) additively alongside persistent scene (which contains Scene Manager, Game State, Player, and persistent world objects)
@@ -21,8 +23,11 @@ public class SceneLoader : MonoBehaviour
        
         //yield return FadeOutAndWait();
 
-        // Load Scene 1 (Menu) additively alongside persistent scene
-        SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        if (!dontLoadMenuSceneAtStart)
+        {
+            // Load Scene 1 (Menu) additively alongside persistent scene
+            SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        }        
 
         // Fade in once the scene is loaded, adjust fadeinDuration as needed
         yield return FadeInAndWait();

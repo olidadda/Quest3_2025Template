@@ -23,6 +23,7 @@ TagManager:
   - disc
   - printer
   - pla
+  - flaskHeated
   layers:
   - Default
   - TransparentFX

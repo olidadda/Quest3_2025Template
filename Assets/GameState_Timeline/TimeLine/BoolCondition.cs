@@ -14,7 +14,7 @@ public class BoolCondition : MonoBehaviour
 
    
 
-    public void SetCondition(bool state)
+    public virtual void SetCondition(bool state)
     {
         // If trying to set to TRUE and there are prerequisites
         if (state && neededConditions.Count > 0)
@@ -47,7 +47,7 @@ public class BoolCondition : MonoBehaviour
         return true;
     }
 
-    public void ToggleCondition()
+    public virtual void ToggleCondition()
     {
         if (!conditionMet || CanBeSet())
         {
@@ -59,7 +59,35 @@ public class BoolCondition : MonoBehaviour
         }
     }
 
-    public void ResetCondition()
+    public bool CheckPrerequisites() // Or CanBeSet() if you prefer that name
+    {
+        // If no prerequisites are assigned, it can always be set.
+        if (neededConditions == null || neededConditions.Count == 0)
+        {
+            return true;
+        }
+
+        // Check each condition in the list
+        foreach (var condition in neededConditions)
+        {
+            // If a condition reference is null (missing) or its state is false, prerequisites fail.
+            if (condition == null || !condition.conditionMet)
+            {
+                // Optional: Log which specific prerequisite failed, useful for debugging
+                // if (condition != null) { // Check condition isn't null before accessing its name
+                //     Debug.LogWarning($"Prerequisite '{condition.conditionName}' for '{this.conditionName}' is not met.");
+                // } else {
+                //     Debug.LogWarning($"A null prerequisite condition exists for '{this.conditionName}'.");
+                // }
+                return false; // Found a prerequisite not met (or null)
+            }
+        }
+
+        // If the loop completes without returning false, all prerequisites are met.
+        return true;
+    }
+
+    public virtual void ResetCondition()
     {
         if (conditionMet)
         {

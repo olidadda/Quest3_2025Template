@@ -51,6 +51,8 @@ public class WireframeController : MonoBehaviour
         // Apply the line-drawing material
         _wireMaterial.SetPass(0);
 
+        GL.PushMatrix();
+
         GL.Begin(GL.LINES);
         GL.Color(wireColor);
 
@@ -75,6 +77,16 @@ public class WireframeController : MonoBehaviour
         }
 
         GL.End();
+
+        GL.PopMatrix();
     }
 
+    void OnDestroy()
+    {
+        if (_wireMaterial != null)
+        {
+            Destroy(_wireMaterial);
+            _wireMaterial = null;
+        }
+    }
 }
