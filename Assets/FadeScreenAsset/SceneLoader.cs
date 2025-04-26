@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    [SerializeField] GameObject fadeScreenObj;
     public FadeScreen fadeScreen;
     [SerializeField] float delayBeforeFadeOut;
 
@@ -14,6 +15,7 @@ public class SceneLoader : MonoBehaviour
 
     private void Start()
     {
+        fadeScreenObj.SetActive(true);
         //Load Scene 1 (Menu) additively alongside persistent scene (which contains Scene Manager, Game State, Player, and persistent world objects)
         StartCoroutine(StartInitialSceneLoad());
     }
@@ -27,22 +29,24 @@ public class SceneLoader : MonoBehaviour
         {
             // Load Scene 1 (Menu) additively alongside persistent scene
             SceneManager.LoadScene(1, LoadSceneMode.Additive);
-        }        
-
+        }
+        
         // Fade in once the scene is loaded, adjust fadeinDuration as needed
         yield return FadeInAndWait();
     }
 
     public void GoToScene(int newSceneIndex, int oldSceneIndex)
-    {        
+    {
+        fadeScreenObj.SetActive(true);
         StartCoroutine(FadeTransitionBetweenAdditiveScenes(newSceneIndex, oldSceneIndex));        
     }
     
 
     IEnumerator FadeTransitionBetweenAdditiveScenes(int newSceneIndex, int oldSceneIndex)
-    {
+    {       
         yield return new WaitForSeconds(delayBeforeFadeOut);
         // Fade out, wait for completion
+        
         yield return FadeOutAndWait();
 
         //Wait until it's (almost) fully loaded, then activate
@@ -90,12 +94,14 @@ public class SceneLoader : MonoBehaviour
     {
         fadeScreen.FadeOut();
         yield return WaitForSecondsRoutine(fadeScreen.fadeoutDuration);
+        
     }
 
     private IEnumerator FadeInAndWait()
     {
         fadeScreen.FadeIn();
         yield return WaitForSecondsRoutine(fadeScreen.fadeinDuration);
+        fadeScreenObj.SetActive(false);
     }
 
     private IEnumerator LoadAdditiveSceneAndWait(int newSceneIndex)
