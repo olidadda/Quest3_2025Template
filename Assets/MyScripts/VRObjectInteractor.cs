@@ -111,8 +111,8 @@ public class VRObjectInteractor : MonoBehaviour
             introAudioPlayed = true; // Mark as 'done'
             isInteractionActive = true;
             currentTimeoutTimer = interactionTimeout;
-            if (infoTextDisplay != null) infoTextDisplay.text = "Explore the components.";
-            Debug.Log("No intro audio assigned. Interaction Enabled Immediately.");
+            if (infoTextDisplay != null) infoTextDisplay.text = "Explore the components by touching them to see some information on the text panel.";
+            //Debug.Log("No intro audio assigned. Interaction Enabled Immediately.");
         }
     }
 
@@ -121,7 +121,7 @@ public class VRObjectInteractor : MonoBehaviour
     /// </summary>
     public void StopInteraction()
     {
-        Debug.Log("VRObjectInteractor: Stopping Interaction Phase.");
+        //Debug.Log("VRObjectInteractor: Stopping Interaction Phase.");
         ResetStateInternally();
     }
 

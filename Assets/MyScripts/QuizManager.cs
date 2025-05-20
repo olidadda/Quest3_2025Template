@@ -251,7 +251,7 @@ public class QuizManager : MonoBehaviour
 
         // First Flash
         redCrossObject.SetActive(true);
-        audioSource.PlayOneShot(errorSound);
+        audioSource.PlayOneShot(errorSound, 0.6f);
         yield return new WaitForSeconds(firstFlashDuration);
         redCrossObject.SetActive(false);
 
@@ -260,7 +260,7 @@ public class QuizManager : MonoBehaviour
 
         // Second Flash
         redCrossObject.SetActive(true);
-        audioSource.PlayOneShot(errorSound);
+        audioSource.PlayOneShot(errorSound, 0.6f);
         yield return new WaitForSeconds(secondFlashDuration);
         redCrossObject.SetActive(false);
 

@@ -5,6 +5,8 @@ public class VRInteractibleObject : MonoBehaviour
 {
     [Tooltip("Reference to the main VRObjectInteractor manager.")]
     [SerializeField] private VRObjectInteractor interactionManager;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip clip;
 
     private void Awake()
     {
@@ -30,9 +32,10 @@ public class VRInteractibleObject : MonoBehaviour
         // Check if the colliding object is tagged as a VR Hand
         if (other.CompareTag(interactionManager.vrHandTag)) // Use the tag defined in the manager
         {
-            Debug.Log($"{gameObject.name} touched by VR Hand: {other.name}");
+            //Debug.Log($"{gameObject.name} touched by VR Hand: {other.name}");
             // Notify the manager that this object was touched
             interactionManager.NotifyObjectTouched(this.gameObject);
+            audioSource.PlayOneShot(clip);
         }
     }
 }

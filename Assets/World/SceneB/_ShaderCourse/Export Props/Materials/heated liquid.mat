@@ -18,7 +18,7 @@ Material:
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: 3102
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses: []
@@ -81,6 +81,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 0.7411765, g: 0.67145956, b: 0.23921566, a: 1}
-    - _EmissionColor: {r: 1, g: 0.46676236, b: 0.06666666, a: 1}
+    - _Color: {r: 0.7411765, g: 0.67058825, b: 0.23921569, a: 1}
+    - _EmissionColor: {r: 0.9433962, g: 0.6674658, b: 0.12163278, a: 1}
   m_BuildTextureStacks: []

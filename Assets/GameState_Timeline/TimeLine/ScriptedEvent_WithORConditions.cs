@@ -65,7 +65,7 @@ public class ScriptedEvent_WithORConditions : TimelineEventBase
 
     public override void Execute()
     {
-        Debug.Log("Starting scripted event: " + eventName);
+        //Debug.Log("Starting scripted event: " + eventName);
         SetupPhase();
         StartCoroutine(PlaySubEvents());
 
@@ -105,7 +105,7 @@ public class ScriptedEvent_WithORConditions : TimelineEventBase
         foreach (var subEvent in subEvents)
         {
             if (!string.IsNullOrEmpty(subEvent.message))
-                Debug.Log(subEvent.message);
+                //Debug.Log(subEvent.message);
 
             if (subEvent.audioClip != null && subEvent.audioSource != null)
                 subEvent.audioSource.PlayOneShot(subEvent.audioClip);
@@ -155,9 +155,9 @@ public class ScriptedEvent_WithORConditions : TimelineEventBase
         {
             if (completionConditions != null && completionConditions.Count > 0) // Only wait if conditions are actually defined
             {
-                Debug.Log($"'{eventName}': Waiting for completion conditions...");
+                //Debug.Log($"'{eventName}': Waiting for completion conditions...");
                 yield return new WaitUntil(CheckFinalCompletionConditions); // Wait until ANY completion condition is met
-                Debug.Log($"'{eventName}': Completion conditions met!");
+                //Debug.Log($"'{eventName}': Completion conditions met!");
             }
             else
             {
@@ -168,7 +168,7 @@ public class ScriptedEvent_WithORConditions : TimelineEventBase
         }
         else
         {
-            Debug.Log($"'{eventName}': Completion conditions were already met.");
+           // Debug.Log($"'{eventName}': Completion conditions were already met.");
         }
 
         ResetConditions(); //Reset specified bool conditions for when I come back to this event
