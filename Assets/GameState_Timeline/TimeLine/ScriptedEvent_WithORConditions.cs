@@ -108,7 +108,11 @@ public class ScriptedEvent_WithORConditions : TimelineEventBase
                 //Debug.Log(subEvent.message);
 
             if (subEvent.audioClip != null && subEvent.audioSource != null)
-                subEvent.audioSource.PlayOneShot(subEvent.audioClip);
+                {
+                    subEvent.audioSource.Stop(); // Stop whatever is currently playing on this source
+                    subEvent.audioSource.PlayOneShot(subEvent.audioClip);
+                }
+                
 
             foreach (var obj in subEvent.activateObjects) obj.SetActive(true);
             foreach (var obj in subEvent.deactivateObjects) obj.SetActive(false);
